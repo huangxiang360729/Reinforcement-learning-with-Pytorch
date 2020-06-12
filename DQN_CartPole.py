@@ -49,12 +49,8 @@ class DeepQNetwork:
             from tensorboardX import SummaryWriter
             tb_writer = SummaryWriter("logs/")
             
-            for i in range(100):
-                tb_writer.add_scalar("scalar",np.random.rand(),i)
-            
-#             dummy_input = torch.rand(1, self.n_features)
-            
-#             tb_writer.add_graph(self.eval_net, dummy_input)
+            dummy_input = torch.rand(1, self.n_features)
+            tb_writer.add_graph(self.eval_net, dummy_input)
 
         self.cost_his = []
 
