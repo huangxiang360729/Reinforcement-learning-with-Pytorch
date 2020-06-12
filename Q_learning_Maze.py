@@ -1,3 +1,21 @@
+"""
+My view:
+step 1. We use Q table to store the Q value of every <state,action> tuple, so state_num equals to row_num and action num equals to collum_num;
+step 2. When we choose action for current_state, we have e_greedy probability to choose the action which has max Q value of this row(current_state), and we also have (1-e_greedy) probability to random choose action;
+step 3. We do the action which is choosed by (step 2), and we will get the reward and the next_state, so we will get the <state,action,reward,next_state> tuple;
+step 4. We can use Q table get the max Q value of next_state(we use next_state_maxvalue to represent it);
+step 5. We calculate q_target(=reward + gamma*next_state_maxvalue);
+step 6. We use Q table to get q_prediciton which row index equals to current_state and collum index equals to current action;
+step 7. We can update the Q table: q_predictin_new={q_prediction_old+learning_rate*(q_target-q_prediction_old)}
+
+Attention:
+1. Update Q table every step;
+2. state_action value is represented by Q value, so we can use Q table to prediction state_action_value;
+3. But the real state_action_value(q_target) equals to reward plus next_state_value(we use the max Q value of next_state to represent next_state_value);
+4. In every step, we have (1-e_greedy) probability to explore the actions which have not max Q value. 
+"""
+
+
 import numpy as np
 import pandas as pd
 import time
