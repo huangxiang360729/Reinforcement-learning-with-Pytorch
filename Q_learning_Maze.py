@@ -5,7 +5,7 @@ step 2. When we choose action for current_state, we have e_greedy probability to
 step 3. We do the action which is choosed by (step 2), and we will get the reward and the next_state, so we will get the <state,action,reward,next_state> tuple;
 step 4. We can use Q table get the max Q value of next_state(we use next_state_maxvalue to represent it);
 step 5. We calculate q_target(=reward + gamma*next_state_maxvalue);
-step 6. We use Q table to get q_prediciton which row index equals to current_state and collum index equals to current action;
+step 6. We use Q table to get q_prediciton(q_table[current_state,current_action]);
 step 7. We can update the Q table: q_predictin_new={q_prediction_old+learning_rate*(q_target-q_prediction_old)}
 
 Attention:
