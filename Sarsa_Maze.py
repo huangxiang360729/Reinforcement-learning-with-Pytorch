@@ -1,3 +1,17 @@
+"""
+My view:
+step 1. Like Q learning, we use Q table to store the Q value of every <state,action> tuple, so state_num equals to row_num and action num equals to collum_num;
+step 2. Like Q learning, when we choose action for current_state, we have e_greedy probability to choose the current_action which has max Q value of this row(current_state), and we also have (1-e_greedy) probability to random choose action;
+step 3. Like Q learning, we do the current_action which is choosed by (step 2), and we will get the reward and the next_state, so we will get the <current_state,current_action,reward,next_state> tuple;
+step 4. Like (step 2), we can choose next_action for next_state;
+step 5. Unlike Q learning, Sarsa calculate q_target(=reward + gamma*q_table[next_state,next_value]);
+step 6. Like Q learning, we use Q table to get q_prediciton(q_table[current_state,current_action]);
+step 7. Like Q learning, we can update the Q table: q_predictin_new={q_prediction_old+learning_rate*(q_target-q_prediction_old)}
+
+Attention:
+1. The most important thing is to know the difference of Q learning and Sarsa---different q_target calculation.
+"""
+
 import numpy as np
 import pandas as pd
 import time
@@ -127,6 +141,7 @@ class Maze(tk.Tk, object):
             self.update() 
 
 class SarsaTable:
+#     def __init__(self, actions, learning_rate=0.01, reward_decay=0.9, e_greedy=0.9):
     def __init__(self, actions, learning_rate=0.01, reward_decay=0.9, e_greedy=0.9):
         self.actions = actions  # a list
         self.lr = learning_rate
