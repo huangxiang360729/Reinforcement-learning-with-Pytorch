@@ -1,3 +1,23 @@
+"""
+My view:
+step 1. We use evaluate_net(nenual network) to predict Q value(state_action's value), and the input of evaluate_net is current_state;
+step 2. We use (step 1)'s output(Q value) to choose a action which has a max Q value(in this placce, we also use e-greedy),then do this action and get the reward and the next_state;
+step 3. Enqueue <current_state,action,reward,next_state> tuple to memory queue, if overflow, dequeue the earliest tuple;
+step 4. Every few steps(e.g. 5), random take batchsize(e.g. 32) tuples from memory to update evaluate_net;
+step 5. We use evaluate_net to get q_evaluate(currrent_state's predicted Q value = evaluate_net(current_state));
+step 6. We use target_net to get q_next(q_next is a array, store all Q value of next_state);
+step 7. We calculate q_target(currrent_state's real Q value = reward + gamma*max(q_next));
+step 8. loss=square(q_target - q_evaluate), use this loss to train evaluate_net;
+step 9. Every few steps(e.g. 200), use evaluate_net's parameters replace target_net's parameters;
+
+Attention:
+1. Every few steps, evaluate_net will be update;
+2. Every few steps, target_net will be replaced by evaluate_net;
+3. We use evaluate_net to get current_state's Q value(a array, store all Q value of state), so we can choose a action with a max Q value;
+4. We use target_net to get next_state's Q value(a array, store all Q value of next_state), so we can get max Q value of next_state;
+"""
+
+
 import numpy as np
 import pandas as pd
 
