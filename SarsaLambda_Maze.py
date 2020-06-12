@@ -1,3 +1,19 @@
+"""
+My view:
+step 1. Like Sarsa, we use Q table to store the Q value of every <state,action> tuple, so state_num equals to row_num and action num equals to collum_num;
+step 2. Like Sarsa, when we choose action for current_state, we have e_greedy probability to choose the current_action which has max Q value of this row(current_state), and we also have (1-e_greedy) probability to random choose action;
+step 3. Like Sarsa, we do the current_action which is choosed by (step 2), and we will get the reward and the next_state, so we will get the <current_state,current_action,reward,next_state> tuple;
+step 4. Like Sarsa, we can choose next_action for next_state;
+step 5. Like Sarsa, Sarsa calculate q_target(=reward + gamma*q_table[next_state,next_value]);
+step 6. Like Sarsa, we use Q table to get q_prediciton(q_table[current_state,current_action]);
+step 7. Unlike Sarsa, we use E table(Eligibility_trace table) to get the access frequency(E value) for every <state,action> tuple, but we will discount the E value by multiply gamma*lambda on every step;
+step 8. Unlike Sarsa, we update the Q table: q_predictin_new={q_prediction_old+learning_rate*(q_target-q_prediction_old)*E[state,action]}
+
+Attention:
+1. The most important thing is to know the difference of Sarsa and SarsaLambda---when update q_prediction, SarsaLambda need multiply E value.
+"""
+
+
 import numpy as np
 import pandas as pd
 import time
