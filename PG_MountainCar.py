@@ -1,3 +1,20 @@
+"""
+My view:
+step 1. We use nenual network to predict action's probability, and the input of nenual network is current state;
+step 2. We use (step 1)'s output(action probability) to random choose a action,then do this action and get the reward;
+step 3. Store <state,action,reward> tuple to memory;
+step 4. After a episode, we can get lots of <state,action,reward> tuple;
+step 5. Because we have get the every action of this episode, so we can calculate every state's value;
+step 6. We can use the nenual network's output(action probability) and current state's real action to form the current cross entropy, know that every state have a cross entropy)
+step 7. We use current cross entropy multiply current state's value to form a sample's loss;
+step 8. Finally, we can use all sample's loss train our nenual network. 
+
+Attention:
+1. Every episode, only update nenual network once;
+2. We use the product of cross entropy and  state's value to form loss, this loss can guide the policy how to change;
+3. We use the cross entropy to express the difference of predction(action's probability) and label(one_hot of real action).
+"""
+
 import gym
 import numpy as np
 import matplotlib.pyplot as plt
