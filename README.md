@@ -8,3 +8,6 @@
 
 ## Run
 * Unlike tensorflow implemention, every python script is a independent program, just run it!
+
+## DDPG's flow chart
+![ddpg](ddpg.png)
